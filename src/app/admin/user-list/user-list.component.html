@@ -1,0 +1,63 @@
+
+<div fxLayout="row wrap">
+  <div fxFlex="100">
+      <mat-card>
+          <mat-card-content>
+            <div fxLayout="row wrap" class="align-items-center">
+              <div fxFlex.gt-md="25" fxFlex.gt-lg="25" fxFlex="100">
+                <mat-form-field>
+                  <input type="text" matInput  aria-describedby="search-text" autofocus id="search-text" [(ngModel)]="searchText" data-toggle="tooltip" title="Please enter username or email or number"
+                  placeholder="Search...">
+                </mat-form-field>
+                <!-- <div class="input-group">
+                  <input type="text" class="form-controll" placeholder="search by name"
+                  [(ngModel)]="username" >
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" (click)="searchUser()" ></button>
+                  </div>
+                </div> -->
+              </div>
+              <div fxFlex.gt-md="75" class="text-right">
+                  <a routerLink='/admin/userRegister'>
+                      <button mat-raised-button color="primary">Add New User</button>
+                  </a>
+              </div>
+          </div>
+          </mat-card-content>
+      </mat-card>
+  </div>
+</div>
+
+<div fxLayout="row wrap">
+  <div fxFlex="100">
+      <mat-card>
+          <mat-card-content>
+            <table class="table table-striped">
+              <thead>
+                <tr class="p-5">
+                  <th scope="col">#User Id</th>
+                  <th scope="col">User Name</th>
+                  <th scope="col">Activity</th>
+                  <th scope="col">Locations</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr *ngFor="let item of users | searchpipe: searchText" class="p-4">
+                  <td scope="row"> {{item._id}} </td>
+                  <td> {{item.username}} </td>
+                  <td> {{item.activity}} </td>
+                  <td>  {{item.latitude}} , {{item.longitude}} <br> Date:{{item.date}} </td>
+                  <td >
+                    <a href="" [routerLink]="['/admin/getOneDataOfUser/', item._id]" routerLinkActive="router-link-active"  >
+                      view More
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-card-content>
+      </mat-card>
+  </div>
+</div>
+
